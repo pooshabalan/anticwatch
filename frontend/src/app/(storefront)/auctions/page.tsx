@@ -45,7 +45,7 @@ export default function AuctionsPage() {
             Private Auctions
           </h1>
           <p className="text-parchment/60 font-sans text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Exclusive bidding events for the world's most historically significant timepieces. Access is limited to verified collectors.
+            Exclusive bidding events for the world&apos;s most historically significant timepieces. Access is limited to verified collectors.
           </p>
         </div>
       </div>

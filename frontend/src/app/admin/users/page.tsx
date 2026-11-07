@@ -62,7 +62,7 @@ export default function UsersManagement() {
                   <tr key={i} className="border-b border-muted/10 hover:bg-muted/5 transition-colors">
                      <td className="p-4 font-mono text-parchment/50 text-xs">{u.id}</td>
                      <td className="p-4 text-parchment font-medium flex items-center gap-2">
-                        {u.name} {u.trust > 90 && <BadgeCheck size={14} className="text-blue-400" title="Premium Verified" />}
+                        {u.name} {u.trust > 90 && <span title="Premium Verified"><BadgeCheck size={14} className="text-blue-400" /></span>}
                      </td>
                      <td className="p-4 text-parchment/70 text-sm">
                        <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-widest font-bold ${u.role === 'Admin' ? 'bg-gold/10 text-gold' : u.role === 'Collector' ? 'bg-blue-500/10 text-blue-400' : 'bg-muted/20 text-parchment/50'}`}>
@@ -89,7 +89,7 @@ export default function UsersManagement() {
                {filteredUsers.length === 0 && (
                   <tr>
                      <td colSpan={7} className="p-8 text-center text-parchment/40 uppercase tracking-widest text-xs">
-                        No matches found for "{searchQuery}"
+                        No matches found for &quot;{searchQuery}&quot;
                      </td>
                   </tr>
                )}

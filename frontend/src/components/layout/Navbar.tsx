@@ -12,7 +12,7 @@ export function Navbar() {
     if (isSearchOpen && watches.length === 0) {
       fetch('/api/watches').then(res => res.json()).then(data => setWatches(data));
     }
-  }, [isSearchOpen]);
+  }, [isSearchOpen, watches.length]);
   
   // Close search on escape
   useEffect(() => {
@@ -116,7 +116,7 @@ export function Navbar() {
 
               {searchQuery && searchResults.length === 0 && (
                 <div className="py-8 text-center text-parchment/50">
-                   No precise matches found for "{searchQuery}".
+                   No precise matches found for &quot;{searchQuery}&quot;.
                 </div>
               )}
             </div>

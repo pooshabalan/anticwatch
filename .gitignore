@@ -20,6 +20,7 @@ backend/.env
 frontend/.env
 
 # Temporary / Log files
+*.tsbuildinfo
 *.log
 create_log.txt
 install_log.txt

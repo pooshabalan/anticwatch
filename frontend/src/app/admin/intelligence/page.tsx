@@ -160,7 +160,7 @@ export default function MarketIntelligence() {
                   <span className="text-parchment/80">rarity_premium</span>: (Rarity: <span className="text-green-400">{rarityScore}</span> * Demand: <span className="text-green-400">{demandFactor.toFixed(1)}</span>),
                </div>
                <div className="pl-4 mt-2">
-                  <span className="text-parchment/80">trend_bias</span>: <span className="text-green-400">"{trend.toUpperCase()}"</span>,
+                  <span className="text-parchment/80">trend_bias</span>: <span className="text-green-400">&quot;{trend.toUpperCase()}&quot;</span>,
                </div>
                <div className="pl-4 mt-2">
                   <span className="text-parchment/80">volatility_index</span>: <span className="text-green-400">{volatility.toFixed(2)}</span>

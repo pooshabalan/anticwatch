@@ -82,7 +82,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <span className="text-parchment font-serif text-lg tracking-wide block mb-1">Bank Wire Transfer</span>
-                    <span className="text-[10px] text-gold uppercase tracking-widest font-bold">Recommended for limits > $50K</span>
+                    <span className="text-[10px] text-gold uppercase tracking-widest font-bold">Recommended for limits &gt; $50K</span>
                   </div>
                 </div>
                 
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex flex-col justify-center">
                   <p className="text-gold font-serif text-xl mb-2">Rolex</p>
-                  <p className="text-parchment/70 font-light text-sm leading-snug">Daytona Ref. 6263 "Big Red"</p>
+                  <p className="text-parchment/70 font-light text-sm leading-snug">Daytona Ref. 6263 &quot;Big Red&quot;</p>
                 </div>
               </div>
 

@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Targeting TiDB Cloud / PostgreSQL natively depending on your connection string
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("Collector") // Admin, Collector, Bidder
+  trust     Int      @default(50)
+  createdAt DateTime @default(now())
+  
+  bids      Bid[]
+}
+
+model Watch {
+  id              String   @id @default(cuid())
+  brand           String
+  model           String
+  year            Int
+  referenceNumber String?
+  basePrice       Float
+  currentPrice    Float
+  description     String   @db.Text
+  fraudRisk       String   @default("Low") // Low, Medium, High
+  rarityScore     Int      @default(50)
+  images          Json 
+  status          String   @default("Inventory") // Inventory, Active, Paused, Terminated, Sold
+  
+  bids            Bid[]
+  createdAt       DateTime @default(now())
+}
+
+model Bid {
+  id        String   @id @default(cuid())
+  amount    Float
+  timestamp DateTime @default(now())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  watchId   String
+  watch     Watch    @relation(fields: [watchId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  firstName     String
+  lastName      String
+  email         String
+  street        String
+  city          String
+  postalCode    String
+  country       String
+  paymentMethod String   @default("Wire Transfer")
+  
+  watchId       String
+  amount        Float
+  status        String   @default("Awaiting Payment")
+  
+  createdAt     DateTime @default(now())
+}
+
+model RegistryApplication {
+  id        String   @id @default(cuid())
+  fullName  String
+  email     String
+  interest  String
+  status    String   @default("Pending Review")
+  createdAt DateTime @default(now())
+}
+

@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // TiDB is deeply MySQL compatible
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  name           String
+  email          String   @unique
+  password       String
+  role           String   @default("buyer")
+  image          String?
+  createdAt      DateTime @default(now())
+  bids           Bid[]
+}
+
+model Seller {
+  id               String   @id @default(cuid())
+  name             String
+  bio              String?  @db.Text
+  location         String
+  verifiedDealer   Boolean  @default(false)
+  rating           Float    @default(0)
+  totalSales       Int      @default(0)
+  avatar           String?
+  memberSince      DateTime @default(now())
+  watches          Watch[]
+}
+
+model Watch {
+  id                     String   @id @default(cuid())
+  brand                  String
+  model                  String
+  year                   Int
+  caliber                String
+  referenceNumber        String
+  basePrice              Float
+  currentPrice           Float
+  previousPrice          Float?
+  percentageChange24h    Float?
+  description            String   @db.Text
+  condition              String
+  authenticityCertificate Boolean
+  boxAndPapers           Boolean
+  caseMaterial           String
+  braceletMaterial       String
+  dialColor              String
+  movementType           String
+  powerReserve           String
+  caseDiameter           String
+  waterResistance        String
+  rarityScore            Float?
+  provenance             String?
+  limitedEdition         Boolean
+  stockStatus            String   @default("Available")
+  viewsCount             Int      @default(0)
+  favoriteCount          Int      @default(0)
+  images                 Json
+  sellerId               String
+  seller                 Seller   @relation(fields: [sellerId], references: [id])
+  bids                   Bid[]
+  marketPulse            MarketPulse[]
+}
+
+model Bid {
+  id         String   @id @default(cuid())
+  amount     Float
+  timestamp  DateTime @default(now())
+  userId     String
+  watchId    String
+  user       User     @relation(fields: [userId], references: [id])
+  watch      Watch    @relation(fields: [watchId], references: [id])
+}
+
+model MarketPulse {
+  id          String   @id @default(cuid())
+  watchId     String
+  price       Float
+  change      Float
+  createdAt   DateTime @default(now())
+  watch       Watch    @relation(fields: [watchId], references: [id])
+}
